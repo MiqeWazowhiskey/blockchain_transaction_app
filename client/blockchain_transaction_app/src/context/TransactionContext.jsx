@@ -8,13 +8,22 @@ const getEthContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer= provider.getSigner();
     const transactionContract = new ethers.Contract(contractAdress,contractABI,signer)
-
+    console.log({
+        provider,
+        signer,
+        transactionContract
+    })
 }
 
 export const TransactionProvider = ({children}) => {
-    const [currentAccount,setCurrentAccount]=useState()
+    const [currentAccount,setCurrentAccount]=useState('')
+    const [data,setData] = useState({addressTo: '', amount: '', keyword: '', message:''})
+    const handleChange= (e,name)=>{
+        setData((prevState) => ({ ...prevState, [name]: e.target.value }));
+    }
     const checkIfWalletConnected =  async()=>{
         try{
+            //if metamask installed
             if(!ethereum){return alert("Please install metamask")}
             const accounts = await ethereum.request({ method: 'eth_accounts'})
             if(accounts.length){
@@ -44,9 +53,18 @@ export const TransactionProvider = ({children}) => {
             throw new Error('No ethereum object')
         }
     }
-    
+    const sendTransaction = async() => {
+        try{
+            if(!ethereum){return alert("Please install metamask")}
+            const { addressTo, amount, keyword, message} = data;
+            getEthContract()
+        }catch(error){
+            console.log(error)
+
+        }
+    }
     return(
-        <TransactionContext.Provider value = {{connectWallet: connectWallet, currentAccount : currentAccount}}>
+        <TransactionContext.Provider value = {{connectWallet,currentAccount, data, setData, handleChange, sendTransaction }}>
             {children}
         </TransactionContext.Provider>
     )

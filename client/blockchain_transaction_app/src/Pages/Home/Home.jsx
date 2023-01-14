@@ -4,7 +4,7 @@ import { Card } from '../../components/Card/Card'
 import {FaEthereum} from 'react-icons/fa'
 import { TransactionContext } from '../../context/TransactionContext'
 const Home = () => {
-  const {currentAccount, connectWallet, handleChange, sendTransaction, formData, isLoading} = useContext(TransactionContext)
+  const {currentAccount, connectWallet, handleChange, sendTransaction, data, isLoading} = useContext(TransactionContext)
   
   return (
     <>
