@@ -8,14 +8,14 @@ contract Transactions {
         address from,
         address reciever,
         uint256 amount,
-        string message,
         uint256 time,
+        string message,
         string keyword
     );
 
     struct TransferStruct {
         address sender;
-        address reciever;
+        address receiver;
         uint256 amount;
         uint256 time;
         string message;
@@ -25,7 +25,7 @@ contract Transactions {
     TransferStruct[] transactions;
 
     function addToChain(
-        address payable to,
+        address payable receiver,
         uint256 amount,
         string memory message,
         string memory keyword
@@ -34,7 +34,7 @@ contract Transactions {
         transactions.push(
             TransferStruct(
                 msg.sender,
-                to,
+                receiver,
                 amount,
                 block.timestamp,
                 message,
@@ -43,10 +43,10 @@ contract Transactions {
         );
         emit Transfer(
             msg.sender,
-            to,
+            receiver,
             amount,
-            message,
             block.timestamp,
+            message,
             keyword
         );
     }

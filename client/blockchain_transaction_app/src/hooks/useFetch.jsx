@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import axios from 'axios'
 const useFetch = ({keyword}) => {
+    const controller = new AbortController();
+
     const [url,setUrl]=useState('')
     const fetch =  ()=>{
         axios
@@ -10,6 +12,7 @@ const useFetch = ({keyword}) => {
             setUrl(res[0]?.images?.downsized_medium?.url)
         })
         .catch(error=>setUrl("https://metro.co.uk/wp-content/uploads/2015/05/pokemon_crying.gif?quality=90&strip=all&zoom=1&resize=500%2C284"))
+        controller.abort()
     }
     useEffect(()=>{if(keyword)fetch()},[keyword])
     return(url)

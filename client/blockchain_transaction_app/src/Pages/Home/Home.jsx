@@ -41,9 +41,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className='justify-end m-8 mr-10'>
+      <div className='justify-end ml-10 mr-10'>
        <Card>
-          <form className='flex flex-col gap-y-10 '>
+          <form className='flex flex-col gap-y-10'>
               <Input placeholder='Address To...' type='text' name='addressTo' handleChange={handleChange}/>
               <Input placeholder='Amount(eth)...' type='number' name='amount' handleChange={handleChange}/>
               <Input placeholder='Keyword Gif...' type='text' name='keyword' handleChange={handleChange}/>
@@ -58,6 +58,7 @@ const Home = () => {
       </div>
     </div>
     <PrevTransactions/>
+
     </Layout>
     </>
   )
