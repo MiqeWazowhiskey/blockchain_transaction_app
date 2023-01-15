@@ -1,19 +1,16 @@
 import React from 'react'
-
+import {SiHiveBlockchain} from 'react-icons/si'
+import { NavLink} from 'react-router-dom'
 const Header = () => {
   return (
-    <div className=' p-5 font-bold backdrop-blur-sm'>
+    <div className='bg-purple-300 bg-opacity-10 p-5 font-bold backdrop-blur-sm'>
         <ul className='flex justify-around'>
-            <li>
-                <a href='./'>Anasayfa</a>
-            </li>
-            <li>
-                <a href='./'>Projeler</a>  
-            </li>    
-            <li className='rounded-[50px] bg-blue-300 p-2'>
-                <a href='./'>Login</a>
-            </li>
             
+            <li>
+                <NavLink to='/'>
+                    <span><SiHiveBlockchain size={32}/></span>
+                </NavLink>
+            </li>            
         </ul>
     </div>
   )

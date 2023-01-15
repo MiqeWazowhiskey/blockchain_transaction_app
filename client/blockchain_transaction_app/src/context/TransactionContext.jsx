@@ -8,16 +8,14 @@ const getEthContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer= provider.getSigner();
     const transactionContract = new ethers.Contract(contractAdress,contractABI,signer)
-    console.log({
-        provider,
-        signer,
-        transactionContract
-    })
+    return transactionContract;
 }
 
 export const TransactionProvider = ({children}) => {
+    const[isLoading,setIsLoading]= useState(false)
     const [currentAccount,setCurrentAccount]=useState('')
     const [data,setData] = useState({addressTo: "", amount: "", keyword: "", message:""})
+    const [transactionCount,setTransCount] = useState(localStorage.getItem('transactionCount'))
     const handleChange= (e,name)=>{
         setData((prevState) => ({ ...prevState, [name]: e.target.value }));
     }
@@ -57,9 +55,30 @@ export const TransactionProvider = ({children}) => {
         try{
             if(!ethereum){return alert("Please install metamask")}
             const { addressTo, amount, keyword, message} = data;
-            getEthContract()
-        }catch(error){
-            console.log(error)
+            const transactionContract = getEthContract(); 
+            const convertedAmount = ethers.utils.parseEther(amount)//to gwei
+            await ethereum.request({
+                method: 'eth_sendTransaction',
+                params: [{
+                    from: currentAccount,
+                    to: addressTo,
+                    gas: '0x5208', //20000 gwei
+                    value: convertedAmount._hex,
+                }] 
+            })
+            const transactionHash = await transactionContract.addToChain(addressTo,convertedAmount,message,keyword)//addtoblockchain on transacitons.sol
+            setIsLoading(true)
+            alert(`Loading + ${transactionHash.hash}`)
+            await transactionHash.wait()
+            setIsLoading(false)
+            alert(`Success + ${transactionHash.hash}`)
+
+            
+            const transactionCount = await transactionContract.getTransactionCount()
+            setTransCount(transactionCount.toNumber())
+        }
+        catch(error){
+            alert('Something went wrong')
 
         }
     }
