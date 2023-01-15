@@ -25,7 +25,6 @@ export const TransactionProvider = ({children}) => {
             if(!ethereum){return alert("Please install metamask")}
             const accounts = await ethereum.request({ method: 'eth_accounts'})
             if(accounts.length){
-                setCurrentAccount(accounts[0])
                 //getTransactions
             }
             else{
@@ -40,7 +39,9 @@ export const TransactionProvider = ({children}) => {
     useEffect(()=>{
         checkIfWalletConnected()
     },[]) 
-    
+    const logOut = ()=> {
+        setCurrentAccount('')
+    }
     const connectWallet = async()=> {
         try{
             if(!ethereum){return alert("Please install metamask")}
@@ -83,7 +84,7 @@ export const TransactionProvider = ({children}) => {
         }
     }
     return(
-        <TransactionContext.Provider value = {{connectWallet,currentAccount, data, setData, handleChange, sendTransaction }}>
+        <TransactionContext.Provider value = {{connectWallet,currentAccount, data, setData, handleChange, sendTransaction,logOut }}>
             {children}
         </TransactionContext.Provider>
     )
