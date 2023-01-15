@@ -17,7 +17,7 @@ const getEthContract = () => {
 
 export const TransactionProvider = ({children}) => {
     const [currentAccount,setCurrentAccount]=useState('')
-    const [data,setData] = useState({addressTo: '', amount: '', keyword: '', message:''})
+    const [data,setData] = useState({addressTo: "", amount: "", keyword: "", message:""})
     const handleChange= (e,name)=>{
         setData((prevState) => ({ ...prevState, [name]: e.target.value }));
     }
@@ -31,7 +31,7 @@ export const TransactionProvider = ({children}) => {
                 //getTransactions
             }
             else{
-                console.log('No Account')
+                throw new Error('Please connect wallet')
             }
         }catch(error){
             throw new Error('No ethereum object')

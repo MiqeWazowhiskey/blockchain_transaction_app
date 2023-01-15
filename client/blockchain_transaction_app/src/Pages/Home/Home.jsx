@@ -15,7 +15,7 @@ const Home = () => {
             Take your place on crypto. Connect your wallet...
           </div>
         {currentAccount ?<p>Welcome</p>: <button onClick={connectWallet} className='w-fit rounded-[50px] p-4 bg-slate-300'>Connect Wallet</button>}
-        <div className='w-[320px] h-[190px] flex-col justify-between bg-gradient-to-r from-purple-300 to-pink-900 rounded-md flex items-start p-5' >
+        <div className='w-[320px] h-[190px] flex-col justify-between bg-gradient-to-r from-purple-300 to-pink-900 rounded-md flex items-start p-5' style={{boxShadow:'8px 8px white'}}>
           <span className='border-2 rounded-full p-2'><FaEthereum size={32}/></span>
           <div className='flex-col'>
             <p className='text-white text-opacity-60'>0xasd...ashdhasdhf</p>
