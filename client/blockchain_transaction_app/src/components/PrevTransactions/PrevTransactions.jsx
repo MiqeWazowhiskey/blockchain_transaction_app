@@ -32,7 +32,7 @@ const PrevTransactions = () => {
               <motion.a key={i} whileHover={{scale: 1.1}} href='https://portfolio.metamask.io' target="_blank" rel="noreferrer">
 
                 <Card className='w-fit h-fit p-8 justify-center mb-10 bg-[#ac36c4] bg-opacity-20 items-center'>
-                            <div className='flex text-black font-bold flex-col'>
+                            <div className='flex items-center text-black font-bold flex-col'>
                                 <div className='mb-5'>
                                     <a>
                                     {transaction.addressFrom &&<p>From: {transaction.addressFrom.substring(0,5)}...{transaction.addressFrom.substring(30)}</p>}
@@ -45,10 +45,10 @@ const PrevTransactions = () => {
                                 </div>
                                 <img
                                     src={useFetch({keyword: transaction.keyword})|| 'https://metro.co.uk/wp-content/uploads/2015/05/pokemon_crying.gif?quality=90&strip=all&zoom=1&resize=500%2C284'}
-                                    className="w-full h-32 rounded-md shadow-lg object-cover"
+                                    className=" h-32 rounded-md shadow-lg object-cover w-48"
                                 />
                                 <div className="bg-black text-center m-2 rounded-full">
-                                    <p className="text-[#e4a3f1] font-bold">{transaction.timestamp}</p>
+                                    <p className="text-[#e4a3f1] font-bold p-3">{transaction.timestamp}</p>
                                 </div>
                             </div>
                 </Card>

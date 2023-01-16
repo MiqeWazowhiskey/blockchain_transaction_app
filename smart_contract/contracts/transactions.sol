@@ -6,10 +6,10 @@ contract Transactions {
 
     event Transfer(
         address from,
-        address reciever,
+        address receiver,
         uint256 amount,
-        uint256 time,
         string message,
+        uint256 time,
         string keyword
     );
 
@@ -25,7 +25,7 @@ contract Transactions {
     TransferStruct[] transactions;
 
     function addToChain(
-        address receiver,
+        address payable receiver,
         uint256 amount,
         string memory message,
         string memory keyword
@@ -45,8 +45,8 @@ contract Transactions {
             msg.sender,
             receiver,
             amount,
-            block.timestamp,
             message,
+            block.timestamp,
             keyword
         );
     }

@@ -14,7 +14,7 @@ const getEthContract = () => {
 export const TransactionProvider = ({children}) => {
     const[isLoading,setIsLoading]= useState(false)
     const [currentAccount,setCurrentAccount]=useState('')
-    const [data,setData] = useState({addressTo: "", amount: "", keyword: "", message:""})
+    const [data,setData] = useState({ addressTo: "", amount: "", keyword: "", message: "" });
     const [transactionCount,setTransCount] = useState(localStorage.getItem('transactionCount'))
     const [transactions, setTransactions] = useState([]);
 
@@ -41,7 +41,7 @@ export const TransactionProvider = ({children}) => {
     }
     const getTransactions = async() => {
         try{
-            const accounts = await ethereum.request({ method: 'eth_accounts'})
+            
             const transactionContract = getEthContract(); 
             if(!ethereum){return alert("Please install metamask")}
             const availableTransactions = await transactionContract.getTransactions()//on transation sol
@@ -61,7 +61,7 @@ export const TransactionProvider = ({children}) => {
     useEffect(()=>{
         
         checkIfWalletConnected()
-        checkIfTransactionExist()
+        checkIfTransactionExist().then(getTransactions())
         
         
     },[]) 
@@ -108,10 +108,8 @@ export const TransactionProvider = ({children}) => {
             })
             const transactionHash = await transactionContract.addToChain(addressTo,convertedAmount,message,keyword)//addtoblockchain on transacitons.sol
             setIsLoading(true)
-            alert(`Loading  ${transactionHash.hash}`)
             await transactionHash.wait()
             setIsLoading(false)
-            alert(`Success  ${transactionHash.hash}`)
 
             
             const transactionCount = await transactionContract.getTransactionCount()

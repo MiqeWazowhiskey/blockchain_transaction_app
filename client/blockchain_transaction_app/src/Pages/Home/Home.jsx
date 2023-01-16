@@ -44,14 +44,14 @@ const Home = () => {
       <div className='justify-end ml-10 mr-10'>
        <Card>
           <form className='flex flex-col gap-y-10'>
-              <Input placeholder='Address To...' type='text' name='addressTo' handleChange={handleChange}/>
+              <Input placeholder="Address To..." name="addressTo" type="text" handleChange={handleChange} />
               <Input placeholder='Amount(eth)...' type='number' name='amount' handleChange={handleChange}/>
               <Input placeholder='Keyword Gif...' type='text' name='keyword' handleChange={handleChange}/>
               <Input placeholder='Message...' type='text' name='message' handleChange={handleChange}/>
 
           </form>
           {isLoading
-                ? <p>Loading, please wait...</p>
+                ? <p className='mt-8'>Loading, please wait...</p>
                 : (
           <button onClick={handleSubmit} type="button" className='mt-20 w-[60%] h-12 text-purple-300 bg-inherit border-2 border-purple-300 bg-opacity-50 rounded-full'>SEND</button>)}
        </Card>
