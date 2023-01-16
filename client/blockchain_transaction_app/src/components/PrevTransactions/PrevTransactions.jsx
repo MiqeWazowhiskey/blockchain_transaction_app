@@ -4,7 +4,7 @@ import {AiOutlineDown} from 'react-icons/ai'
 import { TransactionContext } from '../../context/TransactionContext'
 import { motion } from "framer-motion"
 import useFetch from '../../hooks/useFetch'
-const PrevTransactions = () => {
+export const PrevTransactions = () => {
     
     function handleScroll() {
         window.scroll({
@@ -65,4 +65,3 @@ const PrevTransactions = () => {
   )
 }
 
-export default PrevTransactions
