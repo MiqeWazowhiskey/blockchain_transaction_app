@@ -27,6 +27,7 @@ export const TransactionProvider = ({children}) => {
             if(!ethereum){return alert("Please install metamask")}
             const accounts = await ethereum.request({ method: 'eth_accounts'})
             if(accounts.length){
+                setCurrentAccount(accounts[0])
                 getTransactions()
             }
             else{
@@ -40,6 +41,7 @@ export const TransactionProvider = ({children}) => {
     }
     const getTransactions = async() => {
         try{
+            const accounts = await ethereum.request({ method: 'eth_accounts'})
             const transactionContract = getEthContract(); 
             if(!ethereum){return alert("Please install metamask")}
             const availableTransactions = await transactionContract.getTransactions()//on transation sol
@@ -51,17 +53,17 @@ export const TransactionProvider = ({children}) => {
                 keyword: transaction.keyword,
                 amount: parseInt(transaction.amount._hex) / (10 ** 18)
               }));
-            
               setTransactions(structTransactions);
         }catch(error){
                 console.log(error)
         }
     }
     useEffect(()=>{
+        
         checkIfWalletConnected()
         checkIfTransactionExist()
-        setTransactions('')
-        localStorage.clear()
+        
+        
     },[]) 
     const logOut = ()=> {
         setCurrentAccount('')
@@ -121,7 +123,7 @@ export const TransactionProvider = ({children}) => {
         }
     }
     return(
-        <TransactionContext.Provider value = {{connectWallet,currentAccount, data,transactions, setData, handleChange, sendTransaction,isLoading }}>
+        <TransactionContext.Provider value = {{connectWallet,currentAccount, data,transactions, setData, handleChange, sendTransaction,isLoading,logOut }}>
             {children}
         </TransactionContext.Provider>
     )

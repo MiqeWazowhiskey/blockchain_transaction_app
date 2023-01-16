@@ -25,7 +25,7 @@ contract Transactions {
     TransferStruct[] transactions;
 
     function addToChain(
-        address payable receiver,
+        address receiver,
         uint256 amount,
         string memory message,
         string memory keyword

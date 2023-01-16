@@ -33,7 +33,7 @@ const Home = () => {
             <p>Welcome</p>
           
           : <button onClick={connectWallet} className='w-fit rounded-[50px] p-4 bg-slate-300 text-black hover:bg-slate-500' style={{boxShadow:'4px 4px purple'}}>Connect Wallet</button>}
-        <div className='w-[320px] h-[190px] flex-col  justify-between bg-gradient-to-r from-purple-300 to-pink-900 rounded-md flex items-start p-5' style={{boxShadow:'8px 8px white'}}>
+        <div className='w-[320px] h-[190px] flex-col  justify-between bg-gradient-to-l from-purple-300 to-pink-900 rounded-md flex items-start p-5' style={{boxShadow:'8px 8px white'}}>
           <span className='border-2 rounded-full p-2'><FaEthereum size={32}/></span>
           <div className='flex-col'>
             <p className='text-white text-opacity-60'>{currentAccount.substring(0,5)}...{currentAccount.substring(32)}</p>
