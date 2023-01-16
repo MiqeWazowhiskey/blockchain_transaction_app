@@ -29,9 +29,9 @@ const PrevTransactions = () => {
         <div className="flex flex-wrap gap-x-20 items-center mt-10 ">
           {[...transactions].reverse().map((transaction, i) => {
             return(
-              <motion.a whileHover={{scale: 1.1}} href='https://portfolio.metamask.io' target="_blank" rel="noreferrer">
+              <motion.a key={i} whileHover={{scale: 1.1}} href='https://portfolio.metamask.io' target="_blank" rel="noreferrer">
 
-                <Card key={i} className='w-fit h-fit p-8 justify-center mb-10 bg-[#ac36c4] bg-opacity-20 items-center'>
+                <Card className='w-fit h-fit p-8 justify-center mb-10 bg-[#ac36c4] bg-opacity-20 items-center'>
                             <div className='flex text-black font-bold flex-col'>
                                 <div className='mb-5'>
                                     <a>
@@ -44,7 +44,7 @@ const PrevTransactions = () => {
                                     {transaction.message &&<p>Message: {transaction.message}</p>}
                                 </div>
                                 <img
-                                    src={useFetch(transaction.keyword)|| 'https://metro.co.uk/wp-content/uploads/2015/05/pokemon_crying.gif?quality=90&strip=all&zoom=1&resize=500%2C284'}
+                                    src={useFetch({keyword: transaction.keyword})|| 'https://metro.co.uk/wp-content/uploads/2015/05/pokemon_crying.gif?quality=90&strip=all&zoom=1&resize=500%2C284'}
                                     className="w-full h-32 rounded-md shadow-lg object-cover"
                                 />
                                 <div className="bg-black text-center m-2 rounded-full">
@@ -59,7 +59,7 @@ const PrevTransactions = () => {
 
     </div>
     : <h4 className='text-5xl text-center mt-24'>
-      Please Connect With Your Wallet to See Your Latest Transactions
+      Please Connect With Your Wallet to See Latest Transactions
       </h4>}
     </>
   )

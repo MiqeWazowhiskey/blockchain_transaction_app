@@ -119,7 +119,6 @@ export const TransactionProvider = ({children}) => {
         }
         catch(error){
             alert('Something went wrong')
-
         }
     }
     return(
