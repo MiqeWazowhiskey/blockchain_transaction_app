@@ -4,7 +4,7 @@ import { Card } from '../../components/Card/Card'
 import {FaEthereum} from 'react-icons/fa'
 import { Input } from '../../components/Input'
 import { TransactionContext } from '../../context/TransactionContext'
-import PrevTransactions from '../../components/PrevTransactions/PrevTransactions'
+import PrevTransactions from '../../components/PrevTransactions'
 const Home = () => {
   const {currentAccount, connectWallet, handleChange, sendTransaction, data, isLoading} = useContext(TransactionContext)
   const {ethereum}= window
