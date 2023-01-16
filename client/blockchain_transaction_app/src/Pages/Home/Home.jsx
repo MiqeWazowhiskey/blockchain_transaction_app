@@ -1,5 +1,5 @@
 import React,{ useContext } from 'react'
-import { Layout } from '../../components'
+import Layout from '../../components/Layout' 
 import { Card } from '../../components/Card/Card'
 import {FaEthereum} from 'react-icons/fa'
 import { Input } from '../../components/Input'
