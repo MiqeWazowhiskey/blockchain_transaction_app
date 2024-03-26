@@ -1,15 +1,7 @@
 import useFetch from "../hooks/useFetch.js";
 import {renderHook, waitFor} from '@testing-library/react';
 
-jest.mock('axios', () => ({
-    get: jest.fn()
-}));
-
 describe("useFetch", () => {
-    afterEach(() => {
-        jest.clearAllMocks();
-    });
-
     it("Should return default url when the keyword not provided", async () => {
         const {result} = renderHook(() => useFetch({keyword: ""}));
         await waitFor(()=>result.current);
