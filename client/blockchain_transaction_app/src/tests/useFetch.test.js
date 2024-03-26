@@ -2,7 +2,7 @@ import useFetch from "../hooks/useFetch.js";
 import {renderHook, waitFor} from '@testing-library/react';
 
 jest.mock('axios', () => ({
-    get: jest.fn().mockResolvedValue({ data: 'https://metro.co.uk/wp-content/uploads/2015/05/pokemon_crying.gif?quality=90&strip=all&zoom=1&resize=500%2C284' }),
+    get: jest.fn()
 }));
 
 describe("useFetch", () => {
