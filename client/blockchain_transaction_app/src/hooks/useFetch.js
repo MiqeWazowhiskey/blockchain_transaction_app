@@ -4,8 +4,8 @@ import axios from 'axios'
 const useFetch = ({keyword}) => {
     const [url,setUrl]=useState('')
     const fetch =  async()=>{
-        axios
-        .get(`https://api.giphy.com/v1/gifs/search?api_key=${import.meta.env.VITE_GIFY}&q=${keyword.split(" ").join("")}&limit=1`)
+        await axios
+        .get(`https://api.giphy.com/v1/gifs/search?api_key=${process.env.VITE_GIFY}&q=${keyword.split(" ").join("")}&limit=1`)
         .then(res=>{
             console.log(res)
             setUrl(res.data.data[0].images.downsized_medium.url)

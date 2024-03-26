@@ -3,7 +3,7 @@ import { Card } from '../Card/Card'
 import {AiOutlineDown} from 'react-icons/ai'
 import { TransactionContext } from '../../context/TransactionContext'
 import { motion } from "framer-motion"
-import useFetch from '../../hooks/useFetch'
+import useFetch from '../../hooks/useFetch.js'
 export const PrevTransactions = () => {
     
     function handleScroll() {
